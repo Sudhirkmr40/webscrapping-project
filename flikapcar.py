@@ -1,3 +1,5 @@
+from typing import Any
+
 from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen as urReq
@@ -12,14 +14,17 @@ response_website.read()
 
 data_flipcart = response_website.read()
 
-bigbox = beautifyed_html.find_all("div", {"class": "_1AtVbE col-12-12"})
+
+bigbox = beautifyed_html.find_all("div" , {"class":"_1AtVbE col-12-12" })
 
 product6 = "https://www.flipkart.com" + bigbox[6].div.div.div.a['href']
+
+print(product6)
 
 import requests
 
 product66 = requests.get(product6)
 
-product66.encoding = 'utf-8'
+product66.encoding= 'utf-8'
 
-bs(product66.text, "html.parser")
+bs(product66.text,"html.parser")
